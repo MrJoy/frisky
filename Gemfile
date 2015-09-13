@@ -1,9 +1,9 @@
 # rubocop:disable Style/LeadingCommentSpace
-#ruby=2.2.3
-#ruby-gemset=sparkle_motion
+#ruby-gemset=frisky
 # rubocop:enable Style/LeadingCommentSpace
 source 'http://rubygems.org'
 gemspec
+ruby "2.2.3"
 
 gem 'coveralls', require: false
 #gem "httpi", '>=2.0.0.rc1'
