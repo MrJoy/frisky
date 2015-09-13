@@ -204,7 +204,7 @@ over Devices to control them (and present them in a UI, perhaps?) as you need.
 
 ## Install
 
-    $ gem install frisky --pre
+    $ gem install frisky
 
 ## Copyright
 
