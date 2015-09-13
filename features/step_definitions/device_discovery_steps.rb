@@ -15,20 +15,20 @@ Content-Length: 0\r
   Thread.start { fake_device_collection.start_ssdp_listening }
   Thread.start { fake_device_collection.start_serving_description }
   sleep 0.2
+  control_point
 end
 
 When /^I come online$/ do
   control_point.should be_a Frisky::ControlPoint
+  control_point.start do
+    control_point.stop
+  end
 end
 
 Then /^I should discover at least (\d+) root device$/ do |device_count|
-  cp = control_point(:root)
-  cp.start do
-    cp.stop
-  end
   fake_device_collection.stop_ssdp_listening
   fake_device_collection.stop_serving_description
-  cp.devices.length.should be >= device_count.to_i
+  control_point.devices.length.should be >= device_count.to_i
 end
 
 Then /^the location of that device should match my fake device's location$/ do
