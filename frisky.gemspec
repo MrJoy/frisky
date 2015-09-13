@@ -20,9 +20,6 @@ in a UPnP environment.}
   s.required_ruby_version = Gem::Requirement.new('>=1.9.1')
 
   s.add_dependency 'eventmachine', '>=1.0.0'
-  s.add_dependency 'em-http-request', '>=1.0.2'
   s.add_dependency 'em-synchrony'
-  s.add_dependency 'nori', '>=2.0.2'
   s.add_dependency 'log_switch', '~>1.0.0'
-  s.add_dependency 'savon', '~>2.0'
 end
