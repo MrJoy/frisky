@@ -28,10 +28,10 @@ Then /^I should discover at least (\d+) root device$/ do |device_count|
   end
   fake_device_collection.stop_ssdp_listening
   fake_device_collection.stop_serving_description
-  cp.device_list.should have_at_least(device_count.to_i).items
+  cp.devices.length.should be >= device_count.to_i
 end
 
 Then /^the location of that device should match my fake device's location$/ do
-  locations = control_point.device_list.map { |device| device[:location] }
+  locations = control_point.devices.map { |device| device[:location] }
   locations.should include "http://#{local_ip}:4567"
 end
