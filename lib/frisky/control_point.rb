@@ -157,7 +157,7 @@ module Frisky
 
     def stop
       @running = false
-      @stopping = false
+      @stopping = true
 
       EM.stop if EM.reactor_running?
     end
