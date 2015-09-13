@@ -8,11 +8,6 @@ YARD::Rake::YardocTask.new
 Cucumber::Rake::Task.new(:features)
 RSpec::Core::RakeTask.new
 
-RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
-end
-
 # Alias for rubygems-test
 task test: :spec
 
