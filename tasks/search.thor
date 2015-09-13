@@ -1,5 +1,6 @@
 require 'pp'
 require File.expand_path(File.dirname(__FILE__)+ '/../lib/frisky/ssdp')
+require File.expand_path(File.dirname(__FILE__)+ '/../lib/frisky/logger')
 
 module Frisky
   class Ssdp < Thor
@@ -12,7 +13,7 @@ module Frisky
     method_option :do_broadcast_search, type: :boolean
     method_option :log, type: :boolean
     def search(target='upnp:rootdevice')
-      Frisky.logging_enabled = options[:log]
+      ::Frisky.logging_enabled = options[:log]
       time_before = Time.now
       results = Frisky::SSDP.search(target, options.dup)
       time_after = Time.now

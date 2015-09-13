@@ -14,3 +14,5 @@ ENV['RUBY_UPNP_ENV'] = 'testing'
 RSpec.configure do |config|
   #config.raise_errors_for_deprecations!
 end
+
+require_relative "../lib/frisky/logger"
