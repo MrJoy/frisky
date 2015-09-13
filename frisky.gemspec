@@ -23,7 +23,7 @@ in a UPnP environment.}
   s.add_dependency 'em-http-request', '>=1.0.2'
   s.add_dependency 'em-synchrony'
   s.add_dependency 'nori', '>=2.0.2'
-  s.add_dependency 'log_switch', '>=1.0.0'
+  s.add_dependency 'log_switch', '~>0.4.0'
   s.add_dependency 'savon', '~>2.0'
 
   s.add_development_dependency 'bundler'
