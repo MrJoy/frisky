@@ -5,7 +5,6 @@ require 'rack/lobster'
 
 module Frisky
   class Device
-
     # Multicasts discovery messages to advertise its root device, any embedded
     # devices, and any services.
     def start
@@ -20,9 +19,12 @@ module Frisky
           end
         end
 
-        # Do advertisement
-        # Listen for subscribers
+        yield if block_given?
       end
+    end
+
+    def stop
+      EM.stop if EM.reactor_running?
     end
   end
 end
