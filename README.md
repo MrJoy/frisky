@@ -72,9 +72,6 @@ Take a look at the `tasks` directory; I've created some working examples using
 [Thor](https://github.com/wycats/thor).  You can get a list of these tasks by
 doing `thor -T`.
 
-There's also a more involved, in-progress, working example at
-http://github.com/turboladen/upnp_cp_on_sinatra that uses the Rack middleware
-to build a Sinatra app that allows for controling devices in your network.
 
 ### SSDP Searches
 
