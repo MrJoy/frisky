@@ -23,14 +23,11 @@ module Frisky
   #
   # Before you can do anything with any of the UPnP devices on your network, you
   # need to +search+ your network to see what devices are available.  Once you've
-  # found what's available, you can then decide device(s) you'd like to control
-  # (that's where Control Points come in; take a look at Frisky::ControlPoint).
+  # found what's available, you can then decide device(s) you'd like to control.
   # After searching, you should then +listen+ to the activity on your network.
   # New devices on your network may come online (via +ssdp:alive+) and devices
   # that you care about may go offline (via +ssdp:byebye+), in which case you
   # probably shouldn't try to talk to them anymore.
-  #
-  # @todo Add docs for Frisky::Device perspective.
   class SSDP
     include LogSwitch
     include NetworkConstants
@@ -44,8 +41,7 @@ module Frisky
     #   _not_ running, it returns two key/value pairs--one for
     #   alive_notifications, one for byebye_notifications.  If the reactor _is_
     #   running, it returns a Frisky::SSDP::Listener so that that object can be
-    #   used however desired.  The latter method is used in Frisky::ControlPoints
-    #   so that an object of that type can keep track of devices it cares about.
+    #   used however desired.
     def self.listen(ttl=TTL)
       alive_notifications = Set.new
       byebye_notifications = Set.new
@@ -103,12 +99,9 @@ module Frisky
     #   properly implement the UPnP spec.
     #
     # @return [Array<Hash>,Frisky::SSDP::Searcher] Returns a Hash that represents
-    #   the headers from the M-SEARCH response.  Each one of these can be passed
-    #   in to Frisky::ControlPoint::Device.new to download the device's
-    #   description file, parse it, and interact with the device's devices
-    #   and/or services.  If the reactor is already running this will return a
-    #   a Frisky::SSDP::Searcher which will make its accessors available so you
-    #   can get responses in real time.
+    #   the headers from the M-SEARCH response.  If the reactor is already running
+    #   this will return a Frisky::SSDP::Searcher which will make its accessors
+    #   available so you can get responses in real time.
     def self.search(search_target=:all, options = {})
       response_wait_time = options[:response_wait_time] || 5
       ttl = options[:ttl] || TTL

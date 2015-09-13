@@ -1,7 +1,6 @@
 require 'socket'
 require 'log_buddy'
 require 'cucumber/rspec/doubles'
-require_relative '../../lib/frisky/control_point'
 
 def local_ip_and_port
   orig, Socket.do_not_reverse_lookup = Socket.do_not_reverse_lookup, true

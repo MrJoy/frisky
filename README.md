@@ -19,8 +19,15 @@ you're not already, getting familiar with its concepts will be helpful here.
 ### This Fork
 
 This fork updates the [playful](http://github.com/turboladen/playful) gem,
-which hasn't seen updates in a while and has fallen rather severely behind some
-of its dependencies.
+which hasn't seen updates in a while.
+
+Specifically:
+
+1. Brings a few dependencies up to date.
+2. Gets rid of unfinished/broken, overly-ambitious functionality.
+
+In short, this fork aims to be a simple, minimal way to run SSDP queries and handle the
+results.
 
 ### Er, what's UPnP??
 
@@ -51,9 +58,7 @@ your PS3...).
 
 ### Implemented
 
-* SSDP search, discovery. (almost settled down)
-* Ability to act as a UPnP Control Point. (in progress)
-* Rack middleware to allow for device access in a Rack app.
+* SSDP search, discovery.
 
 
 ### Coming
@@ -116,13 +121,10 @@ my_media_server = Frisky::SSDP.search 'urn:schemas-upnp-org:device:MediaServer:1
 If you do the search inside of an EventMachine reactor, as the
 Frisky::SSDP::Searcher receives and parses responses, it adds them to the
 accessor #discovery_responses, which is an EventMachine::Channel.  This lets
-you subscribe to the resposnes and do what you want with them (most likely
-you'll want to create Frisky::ControlPoint::Device objects so you can control
-your device) as you receive them.
+you subscribe to the resposnes and do what you want with them as you receive them.
 
 ```ruby
 require 'frisky/ssdp'
-require 'frisky/control_point/device'
 
 EM.run do
   searcher = Frisky::SSDP.search 'uuid:3c202906-992d-3f0f-b94c-90e1902a136d'
@@ -134,7 +136,6 @@ EM.run do
   # This callback will get called when the device_creator callback is called
   # (which is called after the device has been created).
   device_controller.callback do |device|
-    p device.service_list.first.class                 # Frisky::ControlPoint::Service
     p device.service_list.first.service_type          # "urn:schemas-upnp-org:service:ContentDirectory:1"
 
     # SOAP actions are converted to Ruby methods--show those
@@ -151,40 +152,10 @@ EM.run do
   # Channel is empty: EventMachine will pop objects off the Channel as soon as
   # they're put there and stop when there are none left.
   searcher.discovery_responses.pop do |notification|
-
-    # Frisky::ControlPoint::Device objects are EventMachine::Deferrables, so you
-    # need to define callback and errback blocks to handle when the Device
-    # object is done being created.
-    device_creator = Frisky::ControlPoint::Device.new(ssdp_notification: notification)
-
-    device_creator.errback do
-      puts "Failed creating the device."
-      exit!
-    end
-
-    device_creator.callback do |built_device|
-      puts "Device has been created now."
-
-      # This lets the device_controller know that the device has been created,
-      # calls its callback, and passes the built device to it.
-      device_controller.set_deferred_status(:succeeded, built_device)
-    end
-
-    # This actually starts the Device creation process and will call the
-    # callback or errback (above) when it's done.
-    device_creator.fetch
+    # Do stuff here.
   end
 end
 ```
-
-### ControlPoints
-
-If you're wanting to control devices and their services, you'll probably be
-more interested in using a Frisky::ControlPoint, instead of doing all that
-work (above) to create a Frisky::ControlPoint::Device.  The ControlPoint will
-handle doing the search and device/service creation for you and will hand you
-over Devices to control them (and present them in a UI, perhaps?) as you need.
- More to come on this as the design settles down.
 
 ## Requirements
 

@@ -1,5 +1,5 @@
 Feature: Device discovery
-  As a device control point, I want to be able to discover devices
+  As a device controller, I want to be able to discover devices
   so that I can use the services those devices provide
 
   Scenario: A single root device
