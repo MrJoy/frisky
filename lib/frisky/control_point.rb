@@ -82,7 +82,7 @@ module Frisky
             log "Device with USN #{advertisement[:usn]} already exists."
           else
             log "Device with USN #{advertisement[:usn]} not found. Creating..."
-            create_device(advertisement)
+            add_device(create_device(advertisement))
           end
         end
 
