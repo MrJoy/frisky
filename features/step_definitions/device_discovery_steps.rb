@@ -14,13 +14,14 @@ Content-Length: 0\r
 
   Thread.start { fake_device_collection.start_ssdp_listening }
   Thread.start { fake_device_collection.start_serving_description }
-  sleep 0.2
+  sleep 5.0
   control_point
 end
 
 When /^I come online$/ do
   control_point.should be_a Frisky::ControlPoint
   control_point.start do
+    control_point.listen(10)
     control_point.stop
   end
 end
