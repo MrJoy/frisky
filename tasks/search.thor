@@ -13,7 +13,7 @@ module Frisky
     method_option :do_broadcast_search, type: :boolean
     method_option :log, type: :boolean
     def search(target='upnp:rootdevice')
-      Frisky.log = options[:log]
+      Frisky.logging_enabled = options[:log]
       time_before = Time.now
       results = Frisky::SSDP.search(target, options.dup)
       time_after = Time.now

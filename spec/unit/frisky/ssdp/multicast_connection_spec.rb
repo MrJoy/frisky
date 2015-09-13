@@ -13,7 +13,7 @@ describe Frisky::SSDP::MulticastConnection do
   subject { Frisky::SSDP::MulticastConnection.new(1) }
 
   before do
-    Frisky.log = false
+    Frisky.logging_enabled = false
   end
 
   describe '#peer_info' do

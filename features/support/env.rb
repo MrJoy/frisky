@@ -18,4 +18,4 @@ end
 ENV['RUBY_UPNP_ENV'] = 'testing'
 
 Thread.abort_on_exception = true
-Frisky.log = false
+Frisky.logging_enabled = false

@@ -11,7 +11,7 @@ describe Frisky::SSDP::Searcher do
   end
 
   before do
-    Frisky.log = false
+    Frisky.logging_enabled = false
     allow_any_instance_of(Frisky::SSDP::MulticastConnection).to receive(:setup_multicast_socket)
   end
 
