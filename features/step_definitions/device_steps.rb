@@ -1,6 +1,8 @@
 When /^I start my device on that IP address and port$/ do
-  @device = Frisky::Device.new#(@local_ip, @port)
-  @device.start.should be_true
+  @device = Frisky::Device.new
+  @device.start do
+    @device.stop
+  end
 end
 
 Then /^the device multicasts a discovery message$/ do
