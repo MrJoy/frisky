@@ -9,7 +9,8 @@ Cucumber::Rake::Task.new(:features)
 RSpec::Core::RakeTask.new
 
 # Alias for rubygems-test
-task test: :spec
+desc "Run all test suites."
+task test: [:spec, :features]
 
 task default: :test
 
