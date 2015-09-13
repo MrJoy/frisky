@@ -15,14 +15,17 @@ module Frisky
     def search(target='upnp:rootdevice')
       ::Frisky.logging_enabled = options[:log]
       time_before = Time.now
-      results = Frisky::SSDP.search(target, options.dup)
-      time_after = Time.now
+      results     = ::Frisky::SSDP.search(target, options.dup)
+                    .map { |r| r[:location] }
+                    .sort
+      unique      = results.uniq
+      time_after  = Time.now
 
       puts <<-RESULTS
 size: #{results.size}
-locations: #{results.map { |r| r[:location] }}
-unique size: #{results.uniq.size}
-unique locations: #{results.uniq.map { |r| r[:location] }}
+locations: #{results.join("\n           ")}
+unique size: #{unique.size}
+unique locations: #{unique.join("\n                  ")}
 search duration: #{time_after - time_before}
       RESULTS
 
