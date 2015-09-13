@@ -1,9 +1,3 @@
-require_relative '../support/fake_upnp_device_collection'
-require 'cucumber/rspec/doubles'
-
-Thread.abort_on_exception = true
-Frisky::SSDP.log = false
-
 Given /^there's at least (\d+) root device in my network$/ do |device_count|
   fake_device_collection.respond_with = <<-ROOT_DEVICE
 HTTP/1.1 200 OK\r
@@ -28,10 +22,13 @@ When /^I come online$/ do
 end
 
 Then /^I should discover at least (\d+) root device$/ do |device_count|
-  control_point.find_devices(:root)
+  cp = control_point(:root)
+  cp.start do
+    cp.stop
+  end
   fake_device_collection.stop_ssdp_listening
   fake_device_collection.stop_serving_description
-  control_point.device_list.should have_at_least(device_count.to_i).items
+  cp.device_list.should have_at_least(device_count.to_i).items
 end
 
 Then /^the location of that device should match my fake device's location$/ do

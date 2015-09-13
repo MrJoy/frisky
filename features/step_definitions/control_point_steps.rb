@@ -1,9 +1,11 @@
 When /^I create my control point$/ do
-  @control_point = Frisky::ControlPoint.new
+  @control_point = Frisky::ControlPoint.new(:root)
 end
 
 When /^tell it to find all root devices$/ do
-  @control_point.find_devices(:root, 5)
+  @control_point.start do
+    @control_point.stop
+  end
 end
 
 When /^tell it to find all services$/ do

@@ -3,6 +3,7 @@ require 'socket'
 require 'ipaddr'
 
 require_relative '../../lib/frisky/ssdp/network_constants'
+require_relative '../../lib/frisky/device'
 
 class FakeUPnPDeviceCollection
   include Singleton

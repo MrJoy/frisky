@@ -1,5 +1,6 @@
 require 'socket'
 require 'log_buddy'
+require 'cucumber/rspec/doubles'
 require_relative '../../lib/frisky/control_point'
 
 def local_ip_and_port
@@ -15,3 +16,6 @@ ensure
 end
 
 ENV['RUBY_UPNP_ENV'] = 'testing'
+
+Thread.abort_on_exception = true
+Frisky.log = false

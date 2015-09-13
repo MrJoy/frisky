@@ -1,6 +1,6 @@
 module HelperStuff
-  def control_point
-    @control_point ||= Frisky::ControlPoint.new
+  def control_point(target = :root)
+    @control_point ||= Frisky::ControlPoint.new(target)
   end
 
   def fake_device_collection
