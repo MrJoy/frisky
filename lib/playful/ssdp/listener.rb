@@ -1,7 +1,7 @@
 require_relative 'multicast_connection'
 
 
-class Playful::SSDP::Listener < Playful::SSDP::MulticastConnection
+class Frisky::SSDP::Listener < Frisky::SSDP::MulticastConnection
   include LogSwitch::Mixin
 
   # @return [EventMachine::Channel] Provides subscribers with notifications

@@ -1,8 +1,8 @@
 require 'log_switch'
 
 
-module Playful
+module Frisky
   extend LogSwitch
 end
 
-Playful.log_class_name = true
+Frisky.log_class_name = true

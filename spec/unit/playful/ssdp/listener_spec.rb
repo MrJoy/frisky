@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'playful/ssdp/listener'
+require 'frisky/ssdp/listener'
 
 
-describe Playful::SSDP::Listener do
+describe Frisky::SSDP::Listener do
   around(:each) do |example|
     EM.synchrony do
       example.run
@@ -11,10 +11,10 @@ describe Playful::SSDP::Listener do
   end
 
   before do
-    allow_any_instance_of(Playful::SSDP::Listener).to receive(:setup_multicast_socket)
+    allow_any_instance_of(Frisky::SSDP::Listener).to receive(:setup_multicast_socket)
   end
 
-  subject { Playful::SSDP::Listener.new(1) }
+  subject { Frisky::SSDP::Listener.new(1) }
 
   describe '#receive_data' do
     it 'logs the IP and port from which the request came from' do

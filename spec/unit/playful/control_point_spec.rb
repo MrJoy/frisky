@@ -1,10 +1,10 @@
 require 'spec_helper'
-require 'playful/control_point'
+require 'frisky/control_point'
 
 
-describe Playful::ControlPoint do
+describe Frisky::ControlPoint do
   subject do
-    Playful::ControlPoint.new(1)
+    Frisky::ControlPoint.new(1)
   end
 
   describe '#ssdp_search_and_listen' do
@@ -13,14 +13,14 @@ describe Playful::ControlPoint do
     end
 
     let(:searcher) do
-      s = double 'Playful::SSDP::Searcher'
+      s = double 'Frisky::SSDP::Searcher'
       s.stub_chain(:discovery_responses, :subscribe).and_yield notification
 
       s
     end
 
     before do
-      expect(Playful::SSDP).to receive(:search).with('ssdp:all', {}).and_return searcher
+      expect(Frisky::SSDP).to receive(:search).with('ssdp:all', {}).and_return searcher
       EM.stub(:add_periodic_timer)
     end
 

@@ -8,7 +8,7 @@ require_relative 'control_point/device'
 require_relative 'control_point/error'
 
 
-module Playful
+module Frisky
 
   # Allows for controlling a UPnP device as defined in the UPnP spec for control
   # points.

@@ -42,9 +42,9 @@ Common implementations of UPnP devices are things like:
 
 
 If you have a device that implements UPnP, you can most likely control it
-programmatically with `playful`.  You can't today, but eventually you'll be
-able to build your own devices & services with `playful` that can be consumed
-by other UPnP clients (ex. build a media server with playful and listen on
+programmatically with `frisky`.  You can't today, but eventually you'll be
+able to build your own devices & services with `frisky` that can be consumed
+by other UPnP clients (ex. build a media server with frisky and listen on
 your PS3...).
 
 ## Features
@@ -81,22 +81,22 @@ keys are the header names, values are the header values.  Take a look at the
 SSDP.search docs for more on the options here.
 
 ```ruby
-require 'playful/ssdp'
+require 'frisky/ssdp'
 
 # Search for all devices (do an M-SEARCH with the ST header set to 'ssdp:all')
-all_devices = Playful::SSDP.search                         # this is default
-all_devices = Playful::SSDP.search 'ssdp:all'              # or be explicit
-all_devices = Playful::SSDP.search :all                    # or use short-hand
+all_devices = Frisky::SSDP.search                         # this is default
+all_devices = Frisky::SSDP.search 'ssdp:all'              # or be explicit
+all_devices = Frisky::SSDP.search :all                    # or use short-hand
 
 # Search for root devices (do an M-SEARCH with ST header set to 'upnp:rootdevices')
-root_devices = Playful::SSDP.search 'upnp:rootdevices'
-root_devices = Playful::SSDP.search :root                  # or use short-hand
+root_devices = Frisky::SSDP.search 'upnp:rootdevices'
+root_devices = Frisky::SSDP.search :root                  # or use short-hand
 
 # Search for a device with a specific UUID
-my_device = Playful::SSDP.search 'uuid:3c202906-992d-3f0f-b94c-90e1902a136d'
+my_device = Frisky::SSDP.search 'uuid:3c202906-992d-3f0f-b94c-90e1902a136d'
 
 # Search for devices of a specific type
-my_media_server = Playful::SSDP.search 'urn:schemas-upnp-org:device:MediaServer:1'
+my_media_server = Frisky::SSDP.search 'urn:schemas-upnp-org:device:MediaServer:1'
 
 # All of these searches will return something that looks like
 # => [
@@ -114,18 +114,18 @@ my_media_server = Playful::SSDP.search 'urn:schemas-upnp-org:device:MediaServer:
 ```
 
 If you do the search inside of an EventMachine reactor, as the
-Playful::SSDP::Searcher receives and parses responses, it adds them to the
+Frisky::SSDP::Searcher receives and parses responses, it adds them to the
 accessor #discovery_responses, which is an EventMachine::Channel.  This lets
 you subscribe to the resposnes and do what you want with them (most likely
-you'll want to create Playful::ControlPoint::Device objects so you can control
+you'll want to create Frisky::ControlPoint::Device objects so you can control
 your device) as you receive them.
 
 ```ruby
-require 'playful/ssdp'
-require 'playful/control_point/device'
+require 'frisky/ssdp'
+require 'frisky/control_point/device'
 
 EM.run do
-  searcher = Playful::SSDP.search 'uuid:3c202906-992d-3f0f-b94c-90e1902a136d'
+  searcher = Frisky::SSDP.search 'uuid:3c202906-992d-3f0f-b94c-90e1902a136d'
 
   # Create a deferrable object that can be notified when the device we want
   # has been found and created.
@@ -134,7 +134,7 @@ EM.run do
   # This callback will get called when the device_creator callback is called
   # (which is called after the device has been created).
   device_controller.callback do |device|
-    p device.service_list.first.class                 # Playful::ControlPoint::Service
+    p device.service_list.first.class                 # Frisky::ControlPoint::Service
     p device.service_list.first.service_type          # "urn:schemas-upnp-org:service:ContentDirectory:1"
 
     # SOAP actions are converted to Ruby methods--show those
@@ -152,10 +152,10 @@ EM.run do
   # they're put there and stop when there are none left.
   searcher.discovery_responses.pop do |notification|
 
-    # Playful::ControlPoint::Device objects are EventMachine::Deferrables, so you
+    # Frisky::ControlPoint::Device objects are EventMachine::Deferrables, so you
     # need to define callback and errback blocks to handle when the Device
     # object is done being created.
-    device_creator = Playful::ControlPoint::Device.new(ssdp_notification: notification)
+    device_creator = Frisky::ControlPoint::Device.new(ssdp_notification: notification)
 
     device_creator.errback do
       puts "Failed creating the device."
@@ -180,8 +180,8 @@ end
 ### ControlPoints
 
 If you're wanting to control devices and their services, you'll probably be
-more interested in using a Playful::ControlPoint, instead of doing all that
-work (above) to create a Playful::ControlPoint::Device.  The ControlPoint will
+more interested in using a Frisky::ControlPoint, instead of doing all that
+work (above) to create a Frisky::ControlPoint::Device.  The ControlPoint will
 handle doing the search and device/service creation for you and will hand you
 over Devices to control them (and present them in a UI, perhaps?) as you need.
  More to come on this as the design settles down.
@@ -204,7 +204,7 @@ over Devices to control them (and present them in a UI, perhaps?) as you need.
 
 ## Install
 
-    $ gem install playful --pre
+    $ gem install frisky --pre
 
 ## Copyright
 

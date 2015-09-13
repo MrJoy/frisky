@@ -2,10 +2,10 @@ require 'nori'
 require 'em-http-request'
 require_relative 'error'
 require_relative '../logger'
-require_relative '../../playful'
+require_relative '../../frisky'
 
 
-module Playful
+module Frisky
   class ControlPoint
     class Base
       include LogSwitch::Mixin

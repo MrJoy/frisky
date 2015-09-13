@@ -8,10 +8,10 @@ require 'eventmachine'
 require 'em-synchrony'
 
 
-module Playful
+module Frisky
   class SSDP
     class MulticastConnection < EventMachine::Connection
-      include Playful::SSDP::NetworkConstants
+      include Frisky::SSDP::NetworkConstants
       include LogSwitch::Mixin
 
       # @param [Fixnum] ttl The TTL value to use when opening the UDP socket

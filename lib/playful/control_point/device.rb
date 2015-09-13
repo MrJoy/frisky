@@ -6,7 +6,7 @@ require 'eventmachine'
 require 'time'
 
 
-module Playful
+module Frisky
   class ControlPoint
     class Device < Base
       include EM::Deferrable

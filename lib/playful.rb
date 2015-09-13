@@ -1,5 +1,5 @@
-require_relative 'playful/version'
+require_relative 'frisky/version'
 
-module Playful
+module Frisky
 
 end

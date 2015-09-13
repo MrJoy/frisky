@@ -1,7 +1,7 @@
 require_relative '../logger'
 require_relative 'multicast_connection'
 
-module Playful
+module Frisky
 
   # A subclass of an EventMachine::Connection, this handles doing M-SEARCHes.
   #

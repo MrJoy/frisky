@@ -1,4 +1,4 @@
-module Playful
+module Frisky
   class SSDP
     class Error < StandardError
     end

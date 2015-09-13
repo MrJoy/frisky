@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'playful/ssdp/multicast_connection'
+require 'frisky/ssdp/multicast_connection'
 
 
-describe Playful::SSDP::MulticastConnection do
+describe Frisky::SSDP::MulticastConnection do
   around(:each) do |example|
     EM.synchrony do
       example.run
@@ -10,15 +10,15 @@ describe Playful::SSDP::MulticastConnection do
     end
   end
 
-  subject { Playful::SSDP::MulticastConnection.new(1) }
+  subject { Frisky::SSDP::MulticastConnection.new(1) }
 
   before do
-    Playful.log = false
+    Frisky.log = false
   end
 
   describe '#peer_info' do
     before do
-      allow_any_instance_of(Playful::SSDP::MulticastConnection).to receive(:setup_multicast_socket)
+      allow_any_instance_of(Frisky::SSDP::MulticastConnection).to receive(:setup_multicast_socket)
       subject.stub_chain(:get_peername, :[], :unpack).
           and_return(%w[1234 1 2 3 4])
     end
@@ -38,7 +38,7 @@ describe Playful::SSDP::MulticastConnection do
 
   describe '#parse' do
     before do
-      allow_any_instance_of(Playful::SSDP::MulticastConnection).to receive(:setup_multicast_socket)
+      allow_any_instance_of(Frisky::SSDP::MulticastConnection).to receive(:setup_multicast_socket)
     end
 
     it 'turns headers into Hash keys' do
@@ -81,10 +81,10 @@ describe Playful::SSDP::MulticastConnection do
 
   describe '#setup_multicast_socket' do
     before do
-      allow_any_instance_of(Playful::SSDP::MulticastConnection).to receive(:set_membership)
-      allow_any_instance_of(Playful::SSDP::MulticastConnection).to receive(:switch_multicast_loop)
-      allow_any_instance_of(Playful::SSDP::MulticastConnection).to receive(:set_multicast_ttl)
-      allow_any_instance_of(Playful::SSDP::MulticastConnection).to receive(:set_ttl)
+      allow_any_instance_of(Frisky::SSDP::MulticastConnection).to receive(:set_membership)
+      allow_any_instance_of(Frisky::SSDP::MulticastConnection).to receive(:switch_multicast_loop)
+      allow_any_instance_of(Frisky::SSDP::MulticastConnection).to receive(:set_multicast_ttl)
+      allow_any_instance_of(Frisky::SSDP::MulticastConnection).to receive(:set_ttl)
     end
 
     it 'adds 0.0.0.0 and 239.255.255.250 to the membership group' do
@@ -117,7 +117,7 @@ describe Playful::SSDP::MulticastConnection do
 
   describe '#switch_multicast_loop' do
     before do
-      allow_any_instance_of(Playful::SSDP::MulticastConnection).to receive(:setup_multicast_socket)
+      allow_any_instance_of(Frisky::SSDP::MulticastConnection).to receive(:setup_multicast_socket)
     end
 
     it "passes '\\001' to the socket option call when param == :on" do
@@ -150,7 +150,7 @@ describe Playful::SSDP::MulticastConnection do
 
     it "raises when not :on, :off, '\\000', or '\\001'" do
       expect { subject.switch_multicast_loop 12312312 }.
-        to raise_error(Playful::SSDP::Error)
+        to raise_error(Frisky::SSDP::Error)
     end
   end
 end

@@ -1,4 +1,4 @@
-module Playful
+module Frisky
   class SSDP
     module NetworkConstants
 

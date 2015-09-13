@@ -1,13 +1,13 @@
 require 'spec_helper'
-require 'playful/ssdp'
+require 'frisky/ssdp'
 
 
-describe Playful::SSDP do
-  subject { Playful::SSDP }
+describe Frisky::SSDP do
+  subject { Frisky::SSDP }
 
   describe '.listen' do
     let(:listener) do
-      searcher = double 'Playful::SSDP::Listener'
+      searcher = double 'Frisky::SSDP::Listener'
       searcher.stub_chain(:alive_notifications, :pop).and_yield(%w[one two])
       searcher.stub_chain(:byebye_notifications, :pop).and_yield(%w[three four])
 
@@ -21,7 +21,7 @@ describe Playful::SSDP do
     end
 
     context 'reactor is already running' do
-      it 'returns a Playful::SSDP::Listener' do
+      it 'returns a Frisky::SSDP::Listener' do
         allow(EM).to receive(:reactor_running?).and_return true
         expect(subject.listen).to eq listener
       end
@@ -39,7 +39,7 @@ describe Playful::SSDP do
       it 'opens a UDP socket on 239.255.255.250, port 1900' do
         allow(EM).to receive(:add_shutdown_hook)
         expect(EM).to receive(:open_datagram_socket).with('239.255.255.250', 1900,
-          Playful::SSDP::Listener, 4)
+          Frisky::SSDP::Listener, 4)
         subject.listen
       end
     end
@@ -47,14 +47,14 @@ describe Playful::SSDP do
 
   describe '.search' do
     let(:multicast_searcher) do
-      searcher = double 'Playful::SSDP::Searcher'
+      searcher = double 'Frisky::SSDP::Searcher'
       searcher.stub_chain(:discovery_responses, :subscribe).and_yield(%w[one two])
 
       searcher
     end
 
     let(:broadcast_searcher) do
-      searcher = double 'Playful::SSDP::BroadcastSearcher'
+      searcher = double 'Frisky::SSDP::BroadcastSearcher'
       searcher.stub_chain(:discovery_responses, :subscribe).and_yield(%w[three four])
 
       searcher
@@ -80,13 +80,13 @@ describe Playful::SSDP do
         expect(search_target).to receive(:to_upnp_s).and_call_original
 
         expect(EM).to receive(:open_datagram_socket).with('0.0.0.0', 0,
-          Playful::SSDP::Searcher, "I'm a string", {})
+          Frisky::SSDP::Searcher, "I'm a string", {})
         subject.search(search_target)
       end
     end
 
     context 'reactor is already running' do
-      it 'returns a Playful::SSDP::Searcher' do
+      it 'returns a Frisky::SSDP::Searcher' do
         allow(EM).to receive(:reactor_running?).and_return true
         expect(subject.search).to eq multicast_searcher
       end
@@ -106,9 +106,9 @@ describe Playful::SSDP do
 
         it 'opens 2 UDP sockets on 0.0.0.0, port 0' do
           allow(EM).to receive(:add_shutdown_hook)
-          expect(EM).to receive(:open_datagram_socket).with('0.0.0.0', 0, Playful::SSDP::Searcher,
+          expect(EM).to receive(:open_datagram_socket).with('0.0.0.0', 0, Frisky::SSDP::Searcher,
             'ssdp:all', {})
-          expect(EM).to receive(:open_datagram_socket).with('0.0.0.0', 0, Playful::SSDP::BroadcastSearcher,
+          expect(EM).to receive(:open_datagram_socket).with('0.0.0.0', 0, Frisky::SSDP::BroadcastSearcher,
             'ssdp:all', 5, 4)
           subject.search(:all, do_broadcast_search: true)
         end
@@ -122,7 +122,7 @@ describe Playful::SSDP do
 
         it 'opens a UDP socket on 0.0.0.0, port 0' do
           allow(EM).to receive(:add_shutdown_hook)
-          expect(EM).to receive(:open_datagram_socket).with('0.0.0.0', 0, Playful::SSDP::Searcher,
+          expect(EM).to receive(:open_datagram_socket).with('0.0.0.0', 0, Frisky::SSDP::Searcher,
             'ssdp:all', {})
           subject.search
         end

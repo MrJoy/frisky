@@ -2,11 +2,11 @@ require 'singleton'
 require 'socket'
 require 'ipaddr'
 
-require_relative '../../lib/playful/ssdp/network_constants'
+require_relative '../../lib/frisky/ssdp/network_constants'
 
 class FakeUPnPDeviceCollection
   include Singleton
-  include Playful::SSDP::NetworkConstants
+  include Frisky::SSDP::NetworkConstants
 
   attr_accessor :respond_with
 

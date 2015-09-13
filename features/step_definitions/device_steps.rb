@@ -1,5 +1,5 @@
 When /^I start my device on that IP address and port$/ do
-  @device = Playful::Device.new(@local_ip, @port)
+  @device = Frisky::Device.new(@local_ip, @port)
   @device.start.should be_true
 end
 

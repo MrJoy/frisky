@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'playful/ssdp/notifier'
+require 'frisky/ssdp/notifier'
 
 
-describe Playful::SSDP::Notifier do
+describe Frisky::SSDP::Notifier do
   around(:each) do |example|
     EM.synchrony do
       example.run
@@ -16,12 +16,12 @@ describe Playful::SSDP::Notifier do
   let(:duration) { 567 }
 
   subject do
-    Playful::SSDP::Notifier.new(1, nt, usn, ddf_url, duration)
+    Frisky::SSDP::Notifier.new(1, nt, usn, ddf_url, duration)
   end
 
   describe '#initialize' do
     it 'creates a notification' do
-      expect_any_instance_of(Playful::SSDP::Notifier).to receive(:notification).
+      expect_any_instance_of(Frisky::SSDP::Notifier).to receive(:notification).
         with(nt, usn, ddf_url, duration)
 
       subject
@@ -67,7 +67,7 @@ CACHE-CONTROL: max-age=567\r
 LOCATION: ddf url\r
 NT: en tee\r
 NTS: ssdp:alive\r
-SERVER: my OS UPnP/1.0 Playful/#{Playful::VERSION}\r
+SERVER: my OS UPnP/1.0 Frisky/#{Frisky::VERSION}\r
 USN: you ess en\r
 \r
       NOTE

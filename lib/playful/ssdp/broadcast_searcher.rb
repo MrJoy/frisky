@@ -6,13 +6,13 @@ require 'socket'
 require 'eventmachine'
 
 
-# TODO: DRY this up!!  (it's mostly the same as Playful::SSDP::MulticastConnection)
-module Playful
+# TODO: DRY this up!!  (it's mostly the same as Frisky::SSDP::MulticastConnection)
+module Frisky
   class SSDP
     class BroadcastSearcher < EventMachine::Connection
       include LogSwitch::Mixin
       include EventMachine::Deferrable
-      include Playful::SSDP::NetworkConstants
+      include Frisky::SSDP::NetworkConstants
 
       # @return [Array] The list of responses from the current discovery request.
       attr_reader :discovery_responses

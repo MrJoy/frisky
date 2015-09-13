@@ -1,6 +1,6 @@
 module HelperStuff
   def control_point
-    @control_point ||= Playful::ControlPoint.new
+    @control_point ||= Frisky::ControlPoint.new
   end
 
   def fake_device_collection

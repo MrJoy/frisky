@@ -1,15 +1,15 @@
 require 'bundler/setup'
-require File.expand_path(File.dirname(__FILE__)+ '/../lib/playful/control_point')
+require File.expand_path(File.dirname(__FILE__)+ '/../lib/frisky/control_point')
 require 'rack'
 require 'em-websocket'
 
-Playful::ControlPoint.raise_on_remote_error = false
+Frisky::ControlPoint.raise_on_remote_error = false
 
-module Playful
+module Frisky
   class ControlPoint < Thor
     desc 'test TARGET', 'Make a control point'
     def test(target='upnp:rootdevice')
-      cp = Playful::ControlPoint.new(target)
+      cp = Frisky::ControlPoint.new(target)
 
       cp.start do |new_device_channel, old_device_channel|
         EM.defer do
