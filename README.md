@@ -1,14 +1,10 @@
-# playful
+# Frisky
 
-* [Homepage](http://github.com/turboladen/playful)
+* [Homepage](http://github.com/MrJoy/frisky)
 * [UPnP Device Architecture Documentation](http://upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.0.pdf)
-* previously `upnp`
 
 
-[<img src="https://travis-ci.org/turboladen/playful.png?branch=master"
-alt="Build Status" />](https://travis-ci.org/turboladen/playful) [<img
-src="https://coveralls.io/repos/turboladen/playful/badge.png" alt="Coverage
-Status" />](https://coveralls.io/r/turboladen/playful)
+[<img src="https://travis-ci.org/MrJoy/frisky.png?branch=master" alt="Build Status" />](https://travis-ci.org/MrJoy/frisky) [<img src="https://coveralls.io/repos/MrJoy/frisky/badge.png" alt="Coverage Status" />](https://coveralls.io/r/MrJoy/frisky)
 
 ## Description
 
@@ -19,6 +15,12 @@ point, as well as provide UPnP devices and services.
 
 This uses [EventMachine](http://github.com/eventmachine/eventmachine), so if
 you're not already, getting familiar with its concepts will be helpful here.
+
+### This Fork
+
+This fork updates the [playful](http://github.com/turboladen/playful) gem,
+which hasn't seen updates in a while and has fallen rather severely behind some
+of its dependencies.
 
 ### Er, what's UPnP??
 
@@ -206,6 +208,7 @@ over Devices to control them (and present them in a UI, perhaps?) as you need.
 
 ## Copyright
 
+Copyright (c) 2015 Jon Frisby
 Copyright (c) 2012-2014 Steve Loveless
 
 See LICENSE.md for details.

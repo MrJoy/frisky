@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path('../lib', __FILE__)
-require 'playful/version'
+require 'frisky/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'playful'
-  s.version     = Playful::VERSION
-  s.author      = 'turboladen'
-  s.email       = 'steve.loveless@gmail.com'
-  s.homepage    = 'http://github.com/turboladen/playful'
+  s.name        = 'frisky'
+  s.version     = Frisky::VERSION
+  s.author      = 'Jon Frisby'
+  s.email       = 'jfrisby@mrjoy.com'
+  s.homepage    = 'http://github.com/MrJoy/frisky'
   s.summary     = 'Use me to build a UPnP app!'
-  s.description = %q{playful provides the tools you need to build an app that runs
+  s.description = %q{frisky provides the tools you need to build an app that runs
 in a UPnP environment.}
 
   s.files         = `git ls-files`.split("\n")
@@ -23,7 +23,7 @@ in a UPnP environment.}
   s.add_dependency 'em-http-request', '>=1.0.2'
   s.add_dependency 'em-synchrony'
   s.add_dependency 'nori', '>=2.0.2'
-  s.add_dependency 'log_switch', '>=0.4.0'
+  s.add_dependency 'log_switch', '>=1.0.0'
   s.add_dependency 'savon', '~>2.0'
 
   s.add_development_dependency 'bundler'

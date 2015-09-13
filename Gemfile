@@ -1,3 +1,7 @@
+# rubocop:disable Style/LeadingCommentSpace
+#ruby=2.2.3
+#ruby-gemset=sparkle_motion
+# rubocop:enable Style/LeadingCommentSpace
 source 'http://rubygems.org'
 gemspec
 
