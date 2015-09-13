@@ -55,7 +55,7 @@ module Frisky
     #
     class Service < Base
       include EventMachine::Deferrable
-      include LogSwitch::Mixin
+      include LogSwitch
 
       #vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
       # Passed in by +service_list_info+

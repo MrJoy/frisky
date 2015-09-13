@@ -8,7 +8,7 @@ require_relative '../../frisky'
 module Frisky
   class ControlPoint
     class Base
-      include LogSwitch::Mixin
+      include LogSwitch
 
       protected
 

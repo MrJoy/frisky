@@ -14,7 +14,7 @@ module Frisky
   #   urn:[custom-schema]:device:[deviceType-version]
   #   urn:[custom-schema]:service:[serviceType-version]
   class SSDP::Searcher < SSDP::MulticastConnection
-    include LogSwitch::Mixin
+    include LogSwitch
 
     DEFAULT_RESPONSE_WAIT_TIME = 5
     DEFAULT_M_SEARCH_COUNT = 2

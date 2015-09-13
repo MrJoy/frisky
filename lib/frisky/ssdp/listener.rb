@@ -2,7 +2,7 @@ require_relative 'multicast_connection'
 
 
 class Frisky::SSDP::Listener < Frisky::SSDP::MulticastConnection
-  include LogSwitch::Mixin
+  include LogSwitch
 
   # @return [EventMachine::Channel] Provides subscribers with notifications
   #   from devices that have come online (sent +ssdp:alive+ notifications).

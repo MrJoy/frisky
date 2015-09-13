@@ -12,7 +12,7 @@ module Frisky
   class SSDP
     class MulticastConnection < EventMachine::Connection
       include Frisky::SSDP::NetworkConstants
-      include LogSwitch::Mixin
+      include LogSwitch
 
       # @param [Fixnum] ttl The TTL value to use when opening the UDP socket
       #   required for SSDP actions.

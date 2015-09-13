@@ -2,7 +2,7 @@ require 'log_switch'
 
 
 module Frisky
-  extend LogSwitch
+  include LogSwitch
 end
 
 Frisky.log_class_name = true

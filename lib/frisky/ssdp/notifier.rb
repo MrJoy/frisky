@@ -3,7 +3,7 @@ require_relative 'multicast_connection'
 
 
 class Frisky::SSDP::Notifier < Frisky::SSDP::MulticastConnection
-  include LogSwitch::Mixin
+  include LogSwitch
 
   def initialize(nt, usn, ddf_url, valid_for_duration)
     @os = RbConfig::CONFIG['host_vendor'].capitalize + '/' +

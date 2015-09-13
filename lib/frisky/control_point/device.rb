@@ -10,7 +10,7 @@ module Frisky
   class ControlPoint
     class Device < Base
       include EM::Deferrable
-      include LogSwitch::Mixin
+      include LogSwitch
 
       attr_reader :ssdp_notification
 

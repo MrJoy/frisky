@@ -32,7 +32,7 @@ module Frisky
   #
   # @todo Add docs for Frisky::Device perspective.
   class SSDP
-    include LogSwitch::Mixin
+    include LogSwitch
     include NetworkConstants
 
     # Opens a multicast UDP socket on 239.255.255.250:1900 and listens for

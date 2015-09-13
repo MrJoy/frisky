@@ -16,7 +16,7 @@ module Frisky
   # It uses +Nori+ for parsing the description XML files, which will use +Nokogiri+
   # if you have it installed.
   class ControlPoint
-    include LogSwitch::Mixin
+    include LogSwitch
 
     def self.config
       yield self

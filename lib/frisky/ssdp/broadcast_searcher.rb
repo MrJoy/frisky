@@ -10,7 +10,7 @@ require 'eventmachine'
 module Frisky
   class SSDP
     class BroadcastSearcher < EventMachine::Connection
-      include LogSwitch::Mixin
+      include LogSwitch
       include EventMachine::Deferrable
       include Frisky::SSDP::NetworkConstants
 
