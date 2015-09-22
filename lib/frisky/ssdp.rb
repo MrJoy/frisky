@@ -1,3 +1,4 @@
+require 'uri'
 require_relative '../core_ext/socket_patch'
 require 'eventmachine'
 require 'em-synchrony'

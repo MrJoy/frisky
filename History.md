@@ -1,3 +1,7 @@
+=== 0.1.2
+
+* Add missing `require 'uri'`.
+
 === 0.1.1
 
 * Removed no-longer-relevant dependencies.
