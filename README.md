@@ -12,22 +12,6 @@ A Ruby implementation of an SSDP (UPnP) client.
 
 Originally forked from [playful](https://github.com/turboladen/playful), this gem reduces the scope to just being an SSDP _client_, reducing dependencies considerably and making it easier to declare this stable and ready to use.
 
-### Er, what's UPnP??
-
-"Universal Plug and Play" is a mashup of network protocols that let network devices identify themselves and discover and use each other's services. Common implementations of UPnP devices are things like:
-
-* [Media Servers and Clients](http://en.wikipedia.org/wiki/List_of_UPnP_AV_media_servers_and_clients) like...
-    * PS3
-    * Slingbox
-    * Xbox
-    * XBMC
-    * Plex
-    * VLC
-    * Twonky
-    * Mediatomb
-* Home Automation
-    * Philips Hue
-
 If you have a device that implements UPnP, you can most likely discover it programmatically with `frisky`.
 
 
