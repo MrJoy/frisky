@@ -1,5 +1,7 @@
 # Frisky
 
+A Ruby implementation of an SSDP (UPnP) client.
+
 * [Homepage](http://github.com/MrJoy/frisky)
 * [UPnP Device Architecture Documentation](http://upnp.org/specs/arch/UPnP-arch-DeviceArchitecture-v1.0.pdf)
 
@@ -8,32 +10,11 @@
 
 ## Description
 
-Ruby's UPnP RubyGem was outdated in Ruby 1.9 when support for Soap4r was
-dropped.  This gem intends to fill that void for Ruby >= 1.9 and allow for
-SSDP search, discovery, advertisement, the ability to act as a UPnP control
-point, as well as provide UPnP devices and services.
-
-This uses [EventMachine](http://github.com/eventmachine/eventmachine), so if
-you're not already, getting familiar with its concepts will be helpful here.
-
-### This Fork
-
-This fork updates the [playful](http://github.com/turboladen/playful) gem,
-which hasn't seen updates in a while.
-
-Specifically:
-
-1. Brings a few dependencies up to date.
-2. Gets rid of unfinished/broken, overly-ambitious functionality.
-
-In short, this fork aims to be a simple, minimal way to run SSDP queries and handle the
-results.
+Originally forked from [playful](https://github.com/turboladen/playful), this gem reduces the scope to just being an SSDP _client_, reducing dependencies considerably and making it easier to declare this stable and ready to use.
 
 ### Er, what's UPnP??
 
-"Universal Plug and Play" is a mashup of network protocols that let network
-devices identify themselves and discover and use each other's services.
-Common implementations of UPnP devices are things like:
+"Universal Plug and Play" is a mashup of network protocols that let network devices identify themselves and discover and use each other's services. Common implementations of UPnP devices are things like:
 
 * [Media Servers and Clients](http://en.wikipedia.org/wiki/List_of_UPnP_AV_media_servers_and_clients) like...
     * PS3
@@ -47,40 +28,12 @@ Common implementations of UPnP devices are things like:
 * Home Automation
     * Philips Hue
 
-
-If you have a device that implements UPnP, you can most likely control it
-programmatically with `frisky`.  You can't today, but eventually you'll be
-able to build your own devices & services with `frisky` that can be consumed
-by other UPnP clients (ex. build a media server with frisky and listen on
-your PS3...).
-
-## Features
-
-### Implemented
-
-* SSDP search, discovery.
-
-
-### Coming
-
-* UPnP Devices & Services (server)
-
-
-## Examples
-
-Take a look at the `tasks` directory; I've created some working examples using
-[Thor](https://github.com/wycats/thor).  You can get a list of these tasks by
-doing `thor -T`.
+If you have a device that implements UPnP, you can most likely discover it programmatically with `frisky`.
 
 
 ### SSDP Searches
 
-An SSDP search simply sends the M-SEARCH out to the multicast group and
-listens for responses for a given (or default of 5 seconds) amount of time.
-The return from this depends on if you're running it within an EventMachine
-reactor or not. If not, it returns is an Array of responses as Hashes, where
-keys are the header names, values are the header values.  Take a look at the
-SSDP.search docs for more on the options here.
+An SSDP search simply sends the `M-SEARCH` command out to the multicast group and listens for responses for a given (or default of 5 seconds) amount of time. The return from this depends on if you're running it within an EventMachine reactor or not. If not, it returns an Array of responses as Hashes, where keys are the header names, values are the header values.  Take a look at the `SSDP.search` docs for more on the options here.
 
 ```ruby
 require 'frisky/ssdp'
@@ -115,10 +68,7 @@ my_media_server = Frisky::SSDP.search 'urn:schemas-upnp-org:device:MediaServer:1
 #     ]
 ```
 
-If you do the search inside of an EventMachine reactor, as the
-Frisky::SSDP::Searcher receives and parses responses, it adds them to the
-accessor #discovery_responses, which is an EventMachine::Channel.  This lets
-you subscribe to the resposnes and do what you want with them as you receive them.
+If you do the search inside of an `EventMachine` reactor, as the `Frisky::SSDP::Searcher` receives and parses responses, it adds them to the accessor `#discovery_responses`, which is an `EventMachine::Channel`.  This lets you subscribe to the responses and do what you want with them as you receive them.
 
 ```ruby
 require 'frisky/ssdp'
@@ -176,7 +126,7 @@ end
 
 ## Copyright
 
-Copyright (c) 2015 Jon Frisby
+Copyright (c) 2015-2016 Jon Frisby
 Copyright (c) 2012-2014 Steve Loveless
 
-See LICENSE.md for details.
+See `LICENSE` for details.
